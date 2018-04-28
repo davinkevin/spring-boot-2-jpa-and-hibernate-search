@@ -1,0 +1,36 @@
+spring:
+ h2.console.enabled: true
+ mvc.view:
+  suffix: .html
+  prefix: /
+ datasource:
+  url: jdbc:h2:/tmp/podcast-server
+  username: sa
+  driver-class-name: org.h2.Driver
+ jpa:
+  database-platform: org.hibernate.dialect.H2Dialect
+  show-sql: false
+  hibernate.ddl-auto: update
+  properties :
+   jadira.usertype.autoRegisterUserTypes: true
+   hibernate:
+    format_sql: true
+    search.default:
+      indexmanager: near-real-time
+      directory_provider: local-heap
+      indexBase: /tmp/podcast-server/lucene
+ servlet.multipart:
+  location: /tmp/podcast-server/
+  max-file-size: 512MB
+  max-request-size: 512MB
+
+server:
+ port: 8080
+ compression:
+  enabled: true
+  mime-types: application/json,application/xml,text/html,text/xml,text/plain
+
+logging:
+ path: /tmp/podcast-server/podcast-server.log
+ level:
+  lan.dk.podcastserver : DEBUG
